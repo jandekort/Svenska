@@ -1,0 +1,229 @@
+/* ---- tokens ---------------------------------------------------- */
+:root {
+  --paper: #f7f9fb;      /* cool Nordic near-white */
+  --card: #ffffff;
+  --ink: #16233d;        /* dark blue ink */
+  --muted: #5a6b80;
+  --line: #d9e1e9;
+  --blue: #005b9e;       /* Swedish blue */
+  --blue-soft: #e3eef7;
+  --yellow: #ffce22;     /* flag yellow — used sparingly as a marker */
+  --radius: 10px;
+  --content-width: 46rem;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Familjen Grotesk", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+/* ---- masthead -------------------------------------------------- */
+.masthead {
+  border-bottom: 1px solid var(--line);
+  background: var(--card);
+}
+.masthead-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 2rem;
+}
+.masthead h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+/* the yellow marker: a flag-stripe underline on the site title */
+.masthead h1::after {
+  content: "";
+  display: block;
+  width: 4.5rem;
+  height: 0.4rem;
+  margin-top: 0.5rem;
+  background: linear-gradient(to right, var(--blue) 50%, var(--yellow) 50%);
+  border-radius: 2px;
+}
+.tagline {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+}
+
+/* ---- layout ---------------------------------------------------- */
+.layout {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  display: grid;
+  grid-template-columns: 15rem minmax(0, var(--content-width));
+  gap: 3rem;
+}
+
+.toc {
+  position: sticky;
+  top: 2rem;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.95rem;
+}
+.toc-label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.toc a {
+  color: var(--ink);
+  text-decoration: none;
+  padding: 0.3rem 0.6rem;
+  border-left: 2px solid transparent;
+  border-radius: 0 6px 6px 0;
+}
+.toc a:hover { background: var(--blue-soft); }
+.toc a.active {
+  border-left-color: var(--yellow);
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-weight: 600;
+}
+
+@media (max-width: 52rem) {
+  .layout { grid-template-columns: 1fr; gap: 1.5rem; }
+  .toc {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1rem;
+  }
+  .toc-label { width: 100%; }
+  .toc a { border-left: none; border: 1px solid var(--line); border-radius: 999px; padding: 0.25rem 0.75rem; }
+  .toc a.active { border-color: var(--blue); }
+}
+
+/* ---- topic sections -------------------------------------------- */
+.topic {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.75rem 2rem;
+  margin-bottom: 2rem;
+}
+.topic > :first-child { margin-top: 0; }
+.topic > :last-child { margin-bottom: 0; }
+
+.topic h1 {
+  font-size: 1.6rem;
+  letter-spacing: -0.01em;
+  margin: 0 0 1rem;
+}
+.topic h2 {
+  font-size: 1.2rem;
+  margin: 2rem 0 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+.topic h3 { font-size: 1.05rem; margin: 1.5rem 0 0.5rem; }
+
+/* Convention: **bold** = Swedish, *italic* = English gloss */
+.topic strong {
+  color: var(--blue);
+  font-weight: 600;
+}
+.topic em { color: var(--muted); }
+
+.topic code {
+  font-family: inherit;
+  background: var(--blue-soft);
+  border-radius: 4px;
+  padding: 0.05em 0.4em;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.topic blockquote {
+  margin: 1rem 0;
+  padding: 0.6rem 1rem;
+  border-left: 4px solid var(--yellow);
+  background: #fffbe8;
+  border-radius: 0 6px 6px 0;
+}
+.topic blockquote p { margin: 0.25rem 0; }
+
+/* ---- tables ---------------------------------------------------- */
+.topic table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+  font-variant-numeric: tabular-nums;
+}
+.topic th, .topic td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+.topic th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  border-bottom: 2px solid var(--ink);
+}
+.topic tr:last-child td { border-bottom: none; }
+.topic tbody tr:hover { background: var(--blue-soft); }
+
+@media (max-width: 40rem) {
+  .topic { padding: 1.25rem 1rem; }
+  .topic table { display: block; overflow-x: auto; }
+}
+
+/* ---- word list ------------------------------------------------- */
+.words-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+.words-list li {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 1rem;
+}
+.words-list li:last-child { border-bottom: none; }
+.words-list li:hover { background: var(--blue-soft); }
+.words-list strong { color: var(--blue); font-weight: 600; }
+
+/* ---- misc ------------------------------------------------------ */
+.loading { color: var(--muted); }
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.site-footer code {
+  background: var(--blue-soft);
+  border-radius: 4px;
+  padding: 0.05em 0.4em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
