@@ -1,0 +1,6 @@
+[
+  { "id": "nouns", "title": "Noun inflection", "file": "nouns.md" },
+  { "id": "adjectives", "title": "Adjectives", "file": "adjectives.md" },
+  { "id": "object-pronouns", "title": "Object & reflexive pronouns", "file": "object-pronouns.md" },
+  { "id": "possessive-pronouns", "title": "Possessive pronouns", "file": "possessive-pronouns.md" }
+]
