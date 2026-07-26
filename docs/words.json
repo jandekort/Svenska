@@ -80,5 +80,7 @@
   {"swedish": "framåt", "english": "forward"},
   {"swedish": "framför", "english": "in front of"},
   {"swedish": "när", "english": "when"},
-  {"swedish": "genom", "english": "through"}
+  {"swedish": "genom", "english": "through"},
+  {"swedish": "hos", "english": "at (someone's place), with (someone)"},
+  {"swedish": "mot", "english": "against, towards, compared to"}
 ]
